@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="EmpleadoService"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="EmpleadoService"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="EmpleadoService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <xsd:documentation></xsd:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="EmpleadoService">
+            <xsd:complexType name="empleado">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:integer"></xsd:element>
+					<xsd:element name="rfc" type="xsd:string"></xsd:element>
+                    <xsd:element name="nombre" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+			
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="listarEmpleadosRequest"/>
+	
+    <wsdl:message name="listarEmpleadosResponse">
+        <wsdl:part name="empleado" type="xsd:empleado"></wsdl:part>
+    </wsdl:message>
+
+    <wsdl:portType name="EmpleadoService">
+        <wsdl:operation name="listarEmpleados">
+            <wsdl:input message="tns:listarEmpleadosRequest"/>
+            <wsdl:output message="tns:listarEmpleadosResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="EmpleadoService" type="tns:EmpleadoService">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="listarEmpleados">
+            <soap:operation soapAction="http://127.0.0.1/ejemplos/empleado_soap.php"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="EmpleadoService"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="EmpleadoService"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="EmpleadoService">
+        <wsdl:port binding="tns:EmpleadoService" name="EmpleadoServicePort">
+            <soap:address location="http://127.0.0.1/ejemplos/empleado_soap.php"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
