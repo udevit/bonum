@@ -22,9 +22,6 @@
 			array('soapaction' => 'http://tempuri.org/Add')
 		);
 		
-		//Invoca al WS SOAP
-		//$resp = $client->Add($add);
-		
 		//Imprimir los request & response
 		echo "REQUEST: ".htmlentities($client->__getLastRequest())."<br><br>";
 		
@@ -35,7 +32,6 @@
 		
 		//Imprimir el valor
 		echo "Imprimir Valor: ".$resp;
-		//echo "Imprimir Valor: ".$resp->AddResult;
 		
 	}catch(Exception $e)
 	{
