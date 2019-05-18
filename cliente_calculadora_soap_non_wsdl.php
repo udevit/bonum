@@ -1,16 +1,4 @@
 <?php
-	//Define el modelo para el request
-	class Add
-	{
-	   public $intA;
-	   public $intB;
-	}
-	
-	//Crea la instancia de la clase y se asignan valores a los atributos
-	$add = new Add();
-	$add->intA = 10;
-	$add->intB = 5;
-	
 	//Definen las opciones para invocacion
 	$options = array(
 			'location' => "http://www.dneonline.com/calculator.asmx",
@@ -28,8 +16,8 @@
 		
 		//Se especifican los parametros a enviar y se invoca al WS SOAP
 		$resp = $client->__soapCall("Add",
-			array(new SoapParam(new SoapVar('10', XSD_INTEGER), 'ns1:intA'),
-			      new SoapParam(new SoapVar('5', XSD_INTEGER), 'ns1:intB')
+			array(new SoapParam(new SoapVar(10, XSD_INTEGER), 'ns1:intA'),
+			      new SoapParam(new SoapVar(5, XSD_INTEGER), 'ns1:intB')
 			),
 			array('soapaction' => 'http://tempuri.org/Add')
 		);
